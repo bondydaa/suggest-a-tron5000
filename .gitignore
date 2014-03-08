@@ -46,10 +46,6 @@ Icon
 .Trashes
 
 
-### Compass ###
-.sass-cache
-
-
 ### SASS ###
 ### Sass Ignores - "Sassy CSS" http://sass-lang.com/
 *.sass-cache
