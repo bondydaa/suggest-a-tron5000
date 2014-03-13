@@ -35,7 +35,7 @@ module.exports = function (grunt) {
       dist: {
         expand: true,
         cwd: 'src/',
-        src: ['eorder/{,*/}*.hbs'],
+        src: ['*.hbs'],
         dest: 'app'
       }
     },
@@ -45,15 +45,10 @@ module.exports = function (grunt) {
       options: {
         sassDir: 'src/styles/',
         cssDir: 'app/css',
-        imagesDir: 'src/images',
-        javascriptsDir: 'src/scripts',
-        fontsDir: 'src/fonts',
-        httpImagesPath: '/images',
-        httpFontsPath: '/fonts',
         relativeAssets: false,
         assetCacheBuster: false,
         outputStyle: 'expanded',
-        noLineComments: true
+        noLineComments: false
       },
       dist: {
         options: {
@@ -65,12 +60,12 @@ module.exports = function (grunt) {
     concat: {
       options: {
         separator: grunt.util.linefeed + grunt.util.linefeed,
-        banner: '(function ($, global) {' + grunt.util.linefeed + grunt.util.linefeed,
-        footer: grunt.util.linefeed + grunt.util.linefeed + '})(jQuery, this);'
+        banner: '(function () {' + grunt.util.linefeed + grunt.util.linefeed,
+        footer: grunt.util.linefeed + grunt.util.linefeed + '})();'
       },
       dist: {
         src: 'src/scripts/*.js',
-        dest: 'scripts/main.js',
+        dest: 'app/scripts/main.js',
       },
     },
 
@@ -78,9 +73,9 @@ module.exports = function (grunt) {
       dynamic: {
         files: [{
           expand: true,
-          cwd: 'app/images/',
+          cwd: 'src/images/',
           src: ['**/*.{jpg,png}'],
-          dest: 'images/'
+          dest: 'app/images/'
         }]
       }
     }
@@ -95,7 +90,8 @@ module.exports = function (grunt) {
 
   // Default task.
   grunt.registerTask('default', [
-    'assemble:dist'
+    'assemble:dist',
+    'compass:dist'
   ]);
 
 };
