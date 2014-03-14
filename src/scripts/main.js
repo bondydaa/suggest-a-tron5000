@@ -19,10 +19,11 @@ var suggestion = {
   displayResult: function(apiCallBack){
     var response = apiCallBack,
         i = 0,
-        template = _.template('<img src="<%= posters.detailed %>"><dl><dt>Title</dt><dd><%= title %></dd><dt>Characters</dt><dd><dl><% _.each( this.abridge_cast, function(el, i, list){ %><dt><%= el %></dt><dt><%= i %></dt><dt><%= list %></dt><% }) %></dd></dl>');
+        template = $('#result-display').html(),
+        compiled = _.template(template, response.movies[i]);
 
-    $('.results').append(template(response.movies[i]));
-    console.log(response.movies[i]);
+    $('.results').html(compiled);
+    console.log(compiled, response.movies[i]);
   },
   ratingSuggest: function(){
 
