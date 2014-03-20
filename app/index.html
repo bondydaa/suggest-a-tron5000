@@ -15,11 +15,28 @@
         <input class="search" id="search-movie" type="text">
       </form>
       <div class="results">
-      </div>
+      <img class="poster" src="http://content7.flixster.com/movie/10/89/43/10894361_det.jpg">
+      <dl>
+        <dt class="label">Title</dt>
+        <dd class="data">Up</dd>
+        <dt class="label">Critics Consensus</dt>
+        <dd class="data">Another masterful work of art from Pixar, Up is an exciting, hilarious, and heartfelt adventure impeccably crafted and told with wit and depth.</dd>
+      </dl>
+    </div>
     </section>
     <script src="/app/scripts/vendor/jquery2.0.min.js"></script>
     <script src="/app/scripts/vendor/lowdash2.4.1.js"></script>
     <script src="/app/scripts/main.js"></script>
-    <script src="/app/scripts/template.js" id="result-display" type="text/template"></script>
+    <script type="text/template" id="result-display">
+      <img class="poster" src='<%= posters.detailed %>'>
+      <dl>
+        <dt class="label">Title</dt>
+        <dd class="data"><%= title %></dd>
+        <dt class="label">Critics Consensus</dt>
+        <dd class="data"><%= critics_consensus %></dd>
+      </dl>
+      <button class="disabled" id="prev">Previous Movie</button>
+      <button id="next">Next Movie</button>
+    </script>
   </body>
 </html>
