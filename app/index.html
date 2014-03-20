@@ -20,6 +20,10 @@
     <script src="/app/scripts/vendor/jquery2.0.min.js"></script>
     <script src="/app/scripts/vendor/lowdash2.4.1.js"></script>
     <script src="/app/scripts/main.js"></script>
-    <script src="/app/scripts/template.js" id="result-display" type="text/template"></script>
+    <script id="result-display" type="text/template">
+      < img src = '<%- posters.detailed %>' > < dl > < dt > Title < /dt>
+  <dd><%= title %></dd > < dt > Critics Consensus < /dt>
+  <dd><%= critics_consensus %></dd > < /dl>
+    </script>
   </body>
 </html>
