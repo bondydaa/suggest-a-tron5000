@@ -12,25 +12,48 @@ var suggestion = {
         q: query
       },
       success: function(res, status){
-        self.displayResult(res, query);
+        console.log(res.total, status);
+        if (res.total){
+          self.displayResult(res, query, 0);
+        } else {
+          alert('Search for "'+query+'" had no results. Please search again.')
+        }
       }
     });
   },
-  displayResult: function(apiCallBack, query){
+  displayResult: function(apiCallBack, query, index){
     var response = apiCallBack,
-        i = 0,
+        i = index,
         template = $('#result-display').html(),
         compiled = _.template(template, response.movies[i]);
 
     $('.results').html(compiled);
-    console.log(response, query);
-    this.differentResult(response, query);
+
+    this.registerDiffResult(response, query, i);
   },
-  differentResult: function(reponse, query){
-    // setTimeout(1000);
-    $('#prev, #next').on('click', function(e){
-      alert(this+' was clicked');
+  registerDiffResult: function(response, query, index){
+    var self = this,
+        i = index;
+
+    $('#next').on('click', function(e){
+      i = ++index;
+      if(i > response.total-1) {
+        e.preventDefault();
+        i = --index;
+      } else {
+        self.displayResult(response, query, i);
+      }
     });
+
+    $('#prev').on('click', function(e){
+      if(i <= 0){
+        e.preventDefault();
+      } else {
+        i = --index;
+        self.displayResult(response, query, i);
+      }
+    });
+
   },
   ratingSuggest: function(){
 

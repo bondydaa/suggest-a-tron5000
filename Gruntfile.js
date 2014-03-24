@@ -29,8 +29,8 @@ module.exports = function (grunt) {
         partials: ['src/_includes/*.hbs'],
         layoutdir: 'src/_layouts/',
         layout: ['default.hbs'],
-        data: ['src/_data/**/*.{json,yml}'],
-        postprocess: require('pretty')
+        data: ['src/_data/**/*.{json,yml}']
+        // postprocess: require('pretty')
       },
       dist: {
         expand: true,
